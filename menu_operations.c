@@ -83,11 +83,29 @@ void array_load(struct ap_scan_info array_wifi[])
 
   int main(int argc, char const *argv[]) {
 
+//    struct ap_scan_info wifi[ARRAY_SIZE];
+    printf("Si es la primera vez que ejecuta el programa, elija la opción 1 para empezar.\n");
+    
     while(1){
 
-    menu();
-    long int opt = data_read();
-    select(opt);
+      menu();
+      long int option = data_read();
+      switch (option) {
+	case 1:
+	  array_load(/*wifi*/);
+	  break;
+	case 2:
+	  show_info(wifi);
+//		printf("\nFuncionalidad en construcción, disculpe las molestias.\n\n\n");
+	  break;
+	case 3:
+//        choose_net();
+	  printf("\nFuncionalidad en construcción, disculpe las molestias.\n\n\n");
+	  break;
+	case 4:
+	  printf("\nFinalizando sesión...\n¡Hasta pronto!\n");
+	  exit(0);
+      }
 
     }
 
