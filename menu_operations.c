@@ -53,31 +53,26 @@ void array_load(struct ap_scan_info array_wifi[])
 
 
 
-  void show_info(struct ap_scan_info array_wifi[]){
+  /*-----Lee cada posición del array y la saca por pantalla-----*/
+
+
+
+  void show_info(struct ap_scan_info wifi[]){
     int i = 0;
+    printf("No.Red\t SSID\t MAC\t Modo\t Canal\t Encriptada\t Calidad\n");
     while (i<ARRAY_SIZE) {
       printf("%s\t %s\n", wifi[i].mac, wifi[i].essid);
+      printf("Prueba de errores\n");
+      i++;
     }
   }
 
 
-  void select(long int opt){
-    switch (opt) {
-      case 1:
-        array_load(wifi);
-        break;
-      case 2:
-//        show_info(wifi[]);
-        break;
-      case 3:
-//        choose_net();
-        break;
-      case 4:
-        exit(0);
-    }
-  }
+/*Función switch para elegir opción del menú*/
 
-
+//  void select_opt(long int opt){
+    
+//  }
 
 /*---------Main----------*/
 
