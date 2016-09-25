@@ -26,9 +26,15 @@ struct ap_scan_info
     unsigned int quality[2];     // Two integers stating quality current/max
 };
 
+//struct ap_scan_info wifi[ARRAY_SIZE];
+
 /*Pease add the prototypes of the functions needed to complete the program*/
 //It allow us use the function read_data() from data_read.o.
 
 extern long int data_read();
+void array_load(/*struct ap_scan_info array_wifi[]*/);
+void menu();
+void show_info(struct ap_scan_info array_wifi[]);
+void select_opt(long int opt);
 
 #endif
