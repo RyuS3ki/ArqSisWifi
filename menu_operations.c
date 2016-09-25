@@ -16,15 +16,15 @@
 /*                      Definición de las variables                          */
 /*---------------------------------------------------------------------------*/
 
-struct ap_scan_info wifi[ARRAY_SIZE];
+//struct ap_scan_info wifi[ARRAY_SIZE];
 
 /*---------------------------------------------------------------------------*/
 /*                      Definición de las funciones                          */
 /*---------------------------------------------------------------------------*/
 
-void array_load(struct ap_scan_info array_wifi[])
+void array_load(/*struct ap_scan_info array_wifi[]*/)
 {
-  int i;
+//  int i;
 
 /*Crea array que contiene los datos que los estudiantes usarán para completar
   la práctica*/
