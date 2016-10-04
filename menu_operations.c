@@ -70,7 +70,7 @@ void array_load(struct ap_scan_info array_wifi[]){
     int i = 0;
     printf("No.Red\t SSID\t\t MAC\t Modo\t Canal\t Encriptada\t Calidad\n");
     while (i<ARRAY_SIZE) {
-      printf("%d\t %s\t %s\t %d\t %d\n", i, array_wifi[i].essid, array_wifi[i].mac, array_wifi[i].mode, array_wifi[i].encrypted);
+      printf("%d\t %*s\t %*s\t %d\t %d\n", i, 20, array_wifi[i].essid, 10, array_wifi[i].mac, array_wifi[i].mode, array_wifi[i].encrypted);
       i++;
     }
   }
