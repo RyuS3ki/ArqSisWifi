@@ -40,20 +40,13 @@ void array_load(struct ap_scan_info array_wifi[]){
   };
 	
 	for(i=0; i<ARRAY_SIZE; i++){
-		for(int j=0; j<MAC_SIZE; j++){
-			array_wifi[i].mac[j] = wifi[i].mac[j];
-		}
 		
-		for(int j=0; j<ESSID_SIZE; j++){
-			array_wifi[i].essid[j] = wifi[i].essid[j];
-		}
+		strcpy(array_wifi[i].mac, wifi[i].mac);
+		strcpy(array_wifi[i].essid, wifi[i].essid);
 		array_wifi[i].mode = wifi[i].mode;
 		array_wifi[i].channel = wifi[i].channel;
 		array_wifi[i].encrypted = wifi[i].encrypted;
-		
-		for(int j=0; j<QUAL_SIZE; j++){
-			array_wifi[i].quality[j] = wifi[i].quality[j];
-		}
+		strcpy(array_wifi[i].quality, wifi[i].quality);
 	}
 	
 }
