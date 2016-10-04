@@ -58,11 +58,11 @@ void array_load(struct ap_scan_info array_wifi[]){
 /*Menu a mostrar al usuario*/
 
   void menu(){
-    printf("\t\t<MENU>\n");
+    printf("\n\t\t<MENU>\n");
     printf("[1]\tCargar información de redes wifi\n");
     printf("[2]\tMostrar las redes activas\n");
     printf("[3]\tElegir y mostrar la información de una red\n");
-    printf("[4]\tSalir\n\n");
+    printf("[4]\tSalir\n");
   }
 
 
@@ -70,9 +70,9 @@ void array_load(struct ap_scan_info array_wifi[]){
 
   void show_info(struct ap_scan_info array_wifi[]){
     int i = 0;
-    printf("%s\t %-*s\t %-*s\t %s\t %s\t %s\t %s\n", "No.Red", 20, "SSID", 20, "MAC", "Modo", "Canal", "Encriptada", "Calidad");
+    printf("%s\t %-*s\t %-*s\t %s\t %s\t %s\t %-s\n", "No.Red", 20, "SSID", 10, "MAC", "Modo", "Canal", "Encriptada", "Calidad");
     while (i<ARRAY_SIZE) {
-      printf("%d\t %-*s\t %-*x\t %d\t %d\t %d\t %d\n\n", i, 20, array_wifi[i].essid, 20, array_wifi[i].mac, array_wifi[i].mode, array_wifi[i].channel, array_wifi[i].encrypted, array_wifi[i].quality);
+      printf("%d\t %-*s\t %-*X\t %d\t %d\t %d\t %-s\n", i, 20, array_wifi[i].essid, 10, array_wifi[i].mac, array_wifi[i].mode, array_wifi[i].channel, array_wifi[i].encrypted, array_wifi[i].quality);
       i++;
     }
   }
@@ -82,7 +82,6 @@ void array_load(struct ap_scan_info array_wifi[]){
   int main(int argc, char const *argv[]) {
 
     struct ap_scan_info arrwf[ARRAY_SIZE];
-    printf("Si es la primera vez que ejecuta el programa, elija la opción 1 para empezar.\n");
     
     while(1){
 
