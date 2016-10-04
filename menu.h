@@ -32,9 +32,9 @@ struct ap_scan_info
 //It allow us use the function read_data() from data_read.o.
 
 extern long int data_read();
-void array_load(/*struct ap_scan_info array_wifi[]*/);
+void array_load(struct ap_scan_info array_wifi[]);
 void menu();
 void show_info(struct ap_scan_info array_wifi[]);
-void select_opt(long int opt);
+//void select_opt(long int opt, );
 
 #endif
