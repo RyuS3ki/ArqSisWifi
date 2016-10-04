@@ -51,6 +51,8 @@ void array_load(struct ap_scan_info array_wifi[]){
 		strncpy(array_wifi[i].quality, wifi[i].quality, 2);
 	}
 	
+	printf("Información cargada correctamente.\n");
+	
 }
 
 /*Menu a mostrar al usuario*/
@@ -60,7 +62,7 @@ void array_load(struct ap_scan_info array_wifi[]){
     printf("[1]\tCargar información de redes wifi\n");
     printf("[2]\tMostrar las redes activas\n");
     printf("[3]\tElegir y mostrar la información de una red\n");
-    printf("[4]\tSalir\n");
+    printf("[4]\tSalir\n\n");
   }
 
 
@@ -70,7 +72,7 @@ void array_load(struct ap_scan_info array_wifi[]){
     int i = 0;
     printf("%s\t %-*s\t %-*s\t %s\t %s\t %s\t %s\n", "No.Red", 20, "SSID", 20, "MAC", "Modo", "Canal", "Encriptada", "Calidad");
     while (i<ARRAY_SIZE) {
-      printf("%d\t %-*s\t %-*s\t %d\t %d\n", i, 20, array_wifi[i].essid, 20, array_wifi[i].mac, array_wifi[i].mode, array_wifi[i].encrypted);
+      printf("%d\t %-*s\t %-*x\t %d\t %d\t %d\t %d\n\n", i, 20, array_wifi[i].essid, 20, array_wifi[i].mac, array_wifi[i].mode, array_wifi[i].channel, array_wifi[i].encrypted, array_wifi[i].quality);
       i++;
     }
   }
