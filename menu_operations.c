@@ -66,12 +66,11 @@ void array_load(struct ap_scan_info array_wifi[]){
 
   /*-----Lee cada posición del array y la saca por pantalla-----*/
 
-  void show_info(struct ap_scan_info wifi[]){
+  void show_info(struct ap_scan_info array_wifi[]){
     int i = 0;
     printf("No.Red\t SSID\t MAC\t Modo\t Canal\t Encriptada\t Calidad\n");
     while (i<ARRAY_SIZE) {
-      printf("%s\t %s\n", wifi[i].mac, wifi[i].essid);
-      printf("Prueba de errores\n");
+      printf("%s\t %s\n", array_wifi[i].mac, array_wifi[i].essid);
       i++;
     }
   }
@@ -94,14 +93,16 @@ void array_load(struct ap_scan_info array_wifi[]){
 	case 1:
 	  array_load(arrwf);
 	  break;
+		      
 	case 2:
 	  show_info(arrwf);
-//		printf("\nFuncionalidad en construcción, disculpe las molestias.\n\n\n");
 	  break;
+		      
 	case 3:
 //        choose_net();
 	  printf("\nFuncionalidad en construcción, disculpe las molestias.\n\n\n");
 	  break;
+		      
 	case 4:
 	  printf("\nFinalizando sesión...\n¡Hasta pronto!\n");
 	  exit(0);
