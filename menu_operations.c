@@ -68,7 +68,7 @@ void array_load(struct ap_scan_info array_wifi[]){
 
   void show_info(struct ap_scan_info array_wifi[]){
     int i = 0;
-    printf("No.Red\t SSID\t MAC\t Modo\t Canal\t Encriptada\t Calidad\n");
+    printf("No.Red\t SSID\t\t MAC\t Modo\t Canal\t Encriptada\t Calidad\n");
     while (i<ARRAY_SIZE) {
       printf("%d\t %s\t %s\t %d\t %d\n", i, array_wifi[i].essid, array_wifi[i].mac, array_wifi[i].mode, array_wifi[i].encrypted);
       i++;
