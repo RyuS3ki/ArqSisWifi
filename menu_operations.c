@@ -10,21 +10,22 @@
 #include <stdio.h>
 #include "menu.h"
 
-#define ARRAY_SIZE 6
-
 /*---------------------------------------------------------------------------*/
 /*                      Definición de las variables                          */
 /*---------------------------------------------------------------------------*/
 
-//struct ap_scan_info wifi[ARRAY_SIZE];
+#define ARRAY_SIZE 6
+#define MAC_SIZE 6
+#define ESSID_SIZE 15
+#define QUAL_SIZE 2
 
 /*---------------------------------------------------------------------------*/
 /*                      Definición de las funciones                          */
 /*---------------------------------------------------------------------------*/
 
-void array_load(/*struct ap_scan_info array_wifi[]*/)
-{
-//  int i;
+void array_load(struct ap_scan_info array_wifi[]){
+	
+  int i;
 
 /*Crea array que contiene los datos que los estudiantes usarán para completar
   la práctica*/
@@ -37,6 +38,24 @@ void array_load(/*struct ap_scan_info array_wifi[]*/)
     {{0x4E, 0x38, 0x49, 0xB5, 0x87, 0x9F}, "GAST-WIFI-LDAP", 6, 49, 0, {24,100}},
     {{0x64, 0xEA, 0x9A, 0x6B, 0xD4, 0x8C}, "WLITa", 2, 41, 1, {8,72}}
   };
+	
+	for(i=0; i<ARRAY_SIZE; i++){
+		for(int j=0; j<MAC_SIZE; j++){
+			array_wifi[i].mac[j] = wifi[i].mac[j];
+		}
+		
+		for(int j=0; j<ESSID_SIZE; j++){
+			array_wifi[i].essid[j] = wifi[i].essid[j];
+		}
+		array_wifi[i].mode = wifi[i].mode;
+		array_wifi[i].channel = wifi[i].channel;
+		array_wifi[i].encrypted = wifi[i].encrypted;
+		
+		for(int j=0; j<QUAL_SIZE; j++){
+			array_wifi[i].quality[j] = wifi[i].quality[j];
+		}
+	}
+	
 }
 
 /*Menu a mostrar al usuario*/
@@ -49,13 +68,8 @@ void array_load(/*struct ap_scan_info array_wifi[]*/)
     printf("[4]\tSalir\n");
   }
 
-/*-----Lee cada posición del array y la saca por pantalla-----*/
-
-
 
   /*-----Lee cada posición del array y la saca por pantalla-----*/
-
-
 
   void show_info(struct ap_scan_info wifi[]){
     int i = 0;
@@ -67,30 +81,26 @@ void array_load(/*struct ap_scan_info array_wifi[]*/)
     }
   }
 
-
-/*Función switch para elegir opción del menú*/
-
-//  void select_opt(long int opt){
-    
-//  }
-
 /*---------Main----------*/
 
   int main(int argc, char const *argv[]) {
 
-//    struct ap_scan_info wifi[ARRAY_SIZE];
+    struct ap_scan_info arrwf[ARRAY_SIZE];
     printf("Si es la primera vez que ejecuta el programa, elija la opción 1 para empezar.\n");
     
     while(1){
 
       menu();
       long int option = data_read();
+			
+/*Función switch para elegir opción del menú*/
+			
       switch (option) {
 	case 1:
-	  array_load(/*wifi*/);
+	  array_load(arrwf);
 	  break;
 	case 2:
-	  show_info(wifi);
+	  show_info(arrwf);
 //		printf("\nFuncionalidad en construcción, disculpe las molestias.\n\n\n");
 	  break;
 	case 3:
@@ -101,9 +111,6 @@ void array_load(/*struct ap_scan_info array_wifi[]*/)
 	  printf("\nFinalizando sesión...\n¡Hasta pronto!\n");
 	  exit(0);
       }
-
     }
-
     return 0;
-
 }
