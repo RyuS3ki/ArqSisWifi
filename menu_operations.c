@@ -73,7 +73,7 @@ void array_load(struct ap_scan_info array_wifi[]){
     int i = 0;
 		int j = 0;
 		int k = 0;
-    printf("%s\t %-*s\t %-*s\t %*s\t %s\t %s\t %s\n", "No.Red", 20, "SSID", 15, "MAC", 15, "Modo", "Canal", "Encriptada", "Calidad");
+    printf("%s\t %-*s\t %-*s\t %s\t %s\t %s\t %s\n", "No.Red", 20, "SSID", 15, "MAC", "Modo", "Canal", "Encriptada", "Calidad");
     while (i<ARRAY_SIZE) {
       printf("%d\t", i);
       printf("%-*s\t", 20, array_wifi[i].essid);
@@ -81,8 +81,8 @@ void array_load(struct ap_scan_info array_wifi[]){
 				for(j = 1; j<(MAC_SIZE-1); j++){
 					printf("%x:", array_wifi[i].mac[j]);
 				}
-			printf("%x", array_wifi[i].mac[MAC_SIZE]);
-	    printf("%*d", 20, array_wifi[i].mode);
+			printf("%x\t", array_wifi[i].mac[MAC_SIZE]);
+	    printf("%*d\t", array_wifi[i].mode);
 			printf("%d\t", array_wifi[i].channel);
 			printf("%d\t", array_wifi[i].encrypted);
 			printf("%-d\n", array_wifi[i].quality[1]);
