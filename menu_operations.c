@@ -63,6 +63,7 @@ void array_load(struct ap_scan_info array_wifi[]){
     printf("[2]\tMostrar las redes activas\n");
     printf("[3]\tElegir y mostrar la información de una red\n");
     printf("[4]\tSalir\n");
+		printf("Teclee una opción:\n");
   }
 
 
