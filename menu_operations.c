@@ -48,7 +48,8 @@ void array_load(struct ap_scan_info array_wifi[]){
 		array_wifi[i].mode = wifi[i].mode;
 		array_wifi[i].channel = wifi[i].channel;
 		array_wifi[i].encrypted = wifi[i].encrypted;
-		array_wifi[i].quality = wifi[i].quality;
+		array_wifi[i].quality[1] = wifi[i].quality[1];
+		array_wifi[i].quality[2] = wifi[i].quality[2];
 	}
 	
 	printf("Información cargada correctamente.\n");
