@@ -78,11 +78,11 @@ void array_load(struct ap_scan_info array_wifi[]){
     while (i<ARRAY_SIZE) {
       printf("%-8d", i);
       printf("%-20s",array_wifi[i].essid);
-	    printf("%-20x:",array_wifi[i].mac[0]);
+	    printf("%-x:",array_wifi[i].mac[0]);
 				for(j = 1; j<(MAC_SIZE-1); j++){
 					printf("%-x:", array_wifi[i].mac[j]);
 				}
-			printf("%-x", array_wifi[i].mac[MAC_SIZE]);
+			printf("%-5x", array_wifi[i].mac[MAC_SIZE]);
 	    printf("%-8d",array_wifi[i].mode);
 			printf("%-8d",array_wifi[i].channel);
 			printf("%-13d",array_wifi[i].encrypted);
