@@ -80,11 +80,11 @@ void array_load(struct ap_scan_info array_wifi[]){
 				for(j = 1; j<(MAC_SIZE-1); j++){
 					printf("%x:", array_wifi[i].mac[j]);
 				}
-			printf("%-*x", 10, array_wifi[i].mac[MAC_SIZE]);
-	    printf("%*d", 4, array_wifi[i].mode);
+			printf("%x", array_wifi[i].mac[MAC_SIZE]);
+	    printf("%*d", 20, array_wifi[i].mode);
 			printf("%d\t", array_wifi[i].channel);
 			printf("%d\t", array_wifi[i].encrypted);
-			printf("%-d\n", array_wifi[i].quality);
+			printf("%-d\n", array_wifi[i].quality[1]);
 	    i++;
     }
   }
