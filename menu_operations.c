@@ -101,7 +101,7 @@ void choose_net(struct ap_scan_info array_wifi[]){
 					printf("%x:", array_wifi[id].mac[j]);
 				}
 	printf("%x\n",array_wifi[id].mac[MAC_SIZE]);
-	printf("Modo: %d\nCanal: %d\nEncriptada: \n", array_wifi[id].mode, array_wifi[id].channel, array_wifi[id].encrypted);
+	printf("Modo: %d\nCanal: %d\nEncriptada: %d\n", array_wifi[id].mode, array_wifi[id].channel, array_wifi[id].encrypted);
 	printf("Calidad: %u/%u\n\n", array_wifi[id].quality[0], array_wifi[id].quality[1]);
 }
 
