@@ -48,7 +48,8 @@ void array_load(struct ap_scan_info array_wifi[]){
 		array_wifi[i].mode = wifi[i].mode;
 		array_wifi[i].channel = wifi[i].channel;
 		array_wifi[i].encrypted = wifi[i].encrypted;
-		strncpy(array_wifi[i].quality, wifi[i].quality, 2);
+		array_wifi[i].quality[0] = wifi[i].quality[0];
+		array_wifi[i].quality[1] = wifi[i].quality[1];
 	}
 	
 	printf("Información cargada correctamente.\n");
@@ -63,6 +64,7 @@ void array_load(struct ap_scan_info array_wifi[]){
     printf("[2]\tMostrar las redes activas\n");
     printf("[3]\tElegir y mostrar la información de una red\n");
     printf("[4]\tSalir\n");
+		printf("Teclee una opción: ");
   }
 
 
@@ -70,22 +72,26 @@ void array_load(struct ap_scan_info array_wifi[]){
 
   void show_info(struct ap_scan_info array_wifi[]){
     int i = 0;
-    printf("%s\t %-*s\t %-*s\t %s\t %s\t %s\t %-s\n", "No.Red", 20, "SSID", 10, "MAC", 4, "Modo", "Canal", "Encriptada", "Calidad");
+		int j = 0;
+    printf("%-8s%-20s%-20s%-8s%-8s%-13s%s\n","No.Red","SSID","MAC","Modo","Canal","Encriptada","Calidad");
+	  printf("------------------------------------------------------------------------------------------------\n");
     while (i<ARRAY_SIZE) {
-      printf("%d\t", i);
-      printf("%-*s\t", 20, array_wifi[i].essid);
-	    printf("%-*X:", 10, array_wifi[i].mac[0]);
-			for(int j = 1; j<MAC_SIZE-1; j++){
-				printf("%s:", array_wifi[i].mac[j]);
-			}
-			printf("%s", array_wifi[i].mac[MAC_SIZE]);
-	    printf("%*d", 4, array_wifi[i].mode);
-			printf("%d\t", array_wifi[i].channel);
-			printf("%d\t", array_wifi[i].encrypted);
-			printf("%-s\n", array_wifi[i].quality);
+      printf("%-8d", i);
+      printf("%-20s",array_wifi[i].essid);
+	    printf("%-x:",array_wifi[i].mac[0]);
+				for(j = 1; j<(MAC_SIZE-1); j++){
+					printf("%-x:", array_wifi[i].mac[j]);
+				}
+			printf("%-5x", array_wifi[i].mac[MAC_SIZE]);
+	    printf("%-8d",array_wifi[i].mode);
+			printf("%-8d",array_wifi[i].channel);
+			printf("%-13d",array_wifi[i].encrypted);
+			printf("%u\n", array_wifi[i].quality[0]);
 	    i++;
     }
   }
+
+//void choose_net(){}
 
 /*---------Main----------*/
 
