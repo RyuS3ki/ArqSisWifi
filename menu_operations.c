@@ -73,8 +73,7 @@ void array_load(struct ap_scan_info array_wifi[]){
   void show_info(struct ap_scan_info array_wifi[]){
     int i = 0;
 		int j = 0;
-		int k = 0;
-    printf("%2s%20s%17s%3s%3s%3s%s\n", "No.Red", "SSID", "MAC", "Modo", "Canal", "Encriptada", "Calidad");
+    printf("%-s%-s%-s%-s%-s%-s%s\n", "No.Red", 20, "SSID", 17, "MAC", 3, "Modo", 3, "Canal", 3, "Encriptada", "Calidad");
 	  printf("-------------------------------------------------------------------\n");
     while (i<ARRAY_SIZE) {
       printf("%7d", i);
