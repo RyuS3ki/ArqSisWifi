@@ -128,8 +128,7 @@ void choose_net(struct ap_scan_info array_wifi[]){
 	  break;
 		      
 	case 3:
-//        choose_net();
-	  printf("\nFuncionalidad en construcción, disculpe las molestias.\n\n\n");
+    choose_net(arrwf);
 	  break;
 		      
 	case 4:
