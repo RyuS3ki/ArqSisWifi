@@ -25,8 +25,9 @@
 /*                      Definición de las funciones                          */
 /*---------------------------------------------------------------------------*/
 
-void array_load(struct ap_scan_info array_wifi[]){
+int array_load(struct ap_scan_info array_wifi[], int error){
 	
+	error = 1;
   int i;
 
 /*Crea array que contiene los datos que los estudiantes usarán para completar
@@ -43,8 +44,8 @@ void array_load(struct ap_scan_info array_wifi[]){
 	
 	for(i=0; i<ARRAY_SIZE; i++){
 		
-		strncpy(array_wifi[i].mac, wifi[i].mac, 6);
-		strncpy(array_wifi[i].essid, wifi[i].essid, 15);
+		memcpy(array_wifi[i].mac, wifi[i].mac, 6);
+		memcpy(array_wifi[i].essid, wifi[i].essid, 15);
 		array_wifi[i].mode = wifi[i].mode;
 		array_wifi[i].channel = wifi[i].channel;
 		array_wifi[i].encrypted = wifi[i].encrypted;
@@ -53,6 +54,7 @@ void array_load(struct ap_scan_info array_wifi[]){
 	}
 	
 	printf("Información cargada correctamente.\n");
+	return error;
 	
 }
 
@@ -70,46 +72,62 @@ void array_load(struct ap_scan_info array_wifi[]){
 
   /*-----Lee cada posición del array y la saca por pantalla-----*/
 
-  void show_info(struct ap_scan_info array_wifi[]){
-    int i = 0;
-		int j = 0;
-    printf("%-8s%-20s%-20s%-8s%-8s%-13s%s\n","No.Red","SSID","MAC","Modo","Canal","Encriptada","Calidad");
-	  printf("------------------------------------------------------------------------------------------------\n");
-    while (i<ARRAY_SIZE) {
-      printf("%-8d", i);
-      printf("%-20s",array_wifi[i].essid);
-	    printf("%-x:",array_wifi[i].mac[0]);
-				for(j = 1; j<(MAC_SIZE-1); j++){
-					printf("%-x:", array_wifi[i].mac[j]);
-				}
-			printf("%-5x", array_wifi[i].mac[MAC_SIZE]);
-	    printf("%-8d",array_wifi[i].mode);
-			printf("%-8d",array_wifi[i].channel);
-			printf("%-13d",array_wifi[i].encrypted);
-			printf("%u\n", array_wifi[i].quality[0]);
-	    i++;
-    }
+  void show_info(struct ap_scan_info array_wifi[], int error){
+		if(error == 0){
+			printf("No hay información cargada, elija la opción 1.\n");
+		}
+		else{
+			int i = 0;
+			int j = 0;
+			
+			printf("-------------------------------------------------------------------------------------\n");
+			printf("%-8s%-20s%-20s%-8s%-8s%-13s%s\n","No.Red","SSID","MAC","Modo","Canal","Encriptada","Calidad");
+			printf("-------------------------------------------------------------------------------------\n");
+			while (i<ARRAY_SIZE) {
+				printf("%-8d", i);
+				printf("%-20s",array_wifi[i].essid);
+				printf("%-x:",array_wifi[i].mac[0]);
+					for(j = 1; j<(MAC_SIZE-1); j++){
+						printf("%-x:", array_wifi[i].mac[j]);
+					}
+				printf("%-5x", array_wifi[i].mac[MAC_SIZE]);
+				printf("%-8d",array_wifi[i].mode);
+				printf("%-8d",array_wifi[i].channel);
+				printf("%-13d",array_wifi[i].encrypted);
+				printf("%u\n", array_wifi[i].quality[0]);
+				i++;
+			}
+			printf("-------------------------------------------------------------------------------------\n");
+		}
   }
 
-void choose_net(struct ap_scan_info array_wifi[]){
-	int j;
+void choose_net(struct ap_scan_info array_wifi[], int error){
 	printf("Introduzca un número de ID: ");
 	int id = data_read();
-	printf("No. Red: %d\nSSID: %s\n", id, array_wifi[id].essid);
-	printf("MAC: ");
-				for(j = 0; j<(MAC_SIZE-1); j++){
-					printf("%x:", array_wifi[id].mac[j]);
-				}
-	printf("%x\n",array_wifi[id].mac[MAC_SIZE]);
-	printf("Modo: %d\nCanal: %d\nEncriptada: %d\n", array_wifi[id].mode, array_wifi[id].channel, array_wifi[id].encrypted);
-	printf("Calidad: %u/%u\n\n", array_wifi[id].quality[0], array_wifi[id].quality[1]);
+	if(error == 0){
+			printf("No hay información cargada, elija la opción 1.\n");
+	}
+	else if(id<0 || id>5){
+		printf("%d no es un ID válido de la Base de Datos\n", id);
+	}
+	else{
+		int j;
+		printf("No. Red: %d\nSSID: %s\n", id, array_wifi[id].essid);
+		printf("MAC: ");
+					for(j = 0; j<(MAC_SIZE-1); j++){
+						printf("%x:", array_wifi[id].mac[j]);
+					}
+		printf("%x\n",array_wifi[id].mac[MAC_SIZE-1]);
+		printf("Modo: %d\nCanal: %d\nEncriptada: %d\n", array_wifi[id].mode, array_wifi[id].channel, array_wifi[id].encrypted);
+		printf("Calidad: %u/%u\n\n", array_wifi[id].quality[0], array_wifi[id].quality[1]);
+	}
 }
 
 /*---------Main----------*/
 
   int main(int argc, char const *argv[]) {
-
-    struct ap_scan_info arrwf[ARRAY_SIZE];
+		struct ap_scan_info arrwf[ARRAY_SIZE];
+		int errcontrol = 0;
     
     while(1){
 
@@ -118,22 +136,22 @@ void choose_net(struct ap_scan_info array_wifi[]){
 			
 /*Función switch para elegir opción del menú*/
 			
-      switch (option) {
-	case 1:
-	  array_load(arrwf);
-	  break;
+    switch(option){
+			case 1:
+			errcontrol = array_load(arrwf, errcontrol);
+			break;
 		      
-	case 2:
-	  show_info(arrwf);
-	  break;
+			case 2:
+	  	show_info(arrwf, errcontrol);
+	  	break;
 		      
-	case 3:
-    choose_net(arrwf);
-	  break;
+			case 3:
+    	choose_net(arrwf, errcontrol);
+	  	break;
 		      
-	case 4:
-	  printf("\nFinalizando sesión...\n¡Hasta pronto!\n");
-	  exit(0);
+			case 4:
+	  	printf("\nFinalizando sesión...\n¡Hasta pronto!\n");
+	  	exit(0);
       }
     }
     return 0;
