@@ -31,7 +31,7 @@ extern long int data_read();
 
 /*Prototipos de funciones*/
 void menu();
-void array_load(struct ap_scan_info array_wifi[], int error);
+int array_load(struct ap_scan_info array_wifi[], int error);
 void show_info(struct ap_scan_info array_wifi[], int error);
 void choose_net(struct ap_scan_info array_wifi[], int error);
 
