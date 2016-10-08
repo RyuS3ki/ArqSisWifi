@@ -79,6 +79,8 @@ int array_load(struct ap_scan_info array_wifi[], int error){
 		else{
 			int i = 0;
 			int j = 0;
+			
+			printf("-------------------------------------------------------------------------------------\n");
 			printf("%-8s%-20s%-20s%-8s%-8s%-13s%s\n","No.Red","SSID","MAC","Modo","Canal","Encriptada","Calidad");
 			printf("-------------------------------------------------------------------------------------\n");
 			while (i<ARRAY_SIZE) {
@@ -105,7 +107,7 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
 	if(error == 0){
 			printf("No hay información cargada, elija la opción 1.\n");
 	}
-	else if(id<0 || id>6){
+	else if(id<0 || id>5){
 		printf("%d no es un ID válido de la Base de Datos", id);
 	}
 	else{
