@@ -130,7 +130,7 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
 			
 /*Función switch para elegir opción del menú*/
 			
-    switch (option, errcontrol) {
+    switch(option, errcontrol){
 			case 1:
 			array_load(arrwf, errcontrol);
 			break;
