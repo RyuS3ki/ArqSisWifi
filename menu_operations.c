@@ -25,9 +25,9 @@
 /*                      Definición de las funciones                          */
 /*---------------------------------------------------------------------------*/
 
-void array_load(struct ap_scan_info array_wifi[]){
+void array_load(struct ap_scan_info array_wifi[], int error){
 	
-	errcontrol = 1;
+	error = 1;
   int i;
 
 /*Crea array que contiene los datos que los estudiantes usarán para completar
@@ -71,8 +71,8 @@ void array_load(struct ap_scan_info array_wifi[]){
 
   /*-----Lee cada posición del array y la saca por pantalla-----*/
 
-  void show_info(struct ap_scan_info array_wifi[]){
-		if(errcontrol == 0){
+  void show_info(struct ap_scan_info array_wifi[], int error){
+		if(error == 0){
 			printf("No hay información cargada, elija la opción 1.\n");
 		}
 		else{
@@ -97,9 +97,9 @@ void array_load(struct ap_scan_info array_wifi[]){
 		}
   }
 
-void choose_net(struct ap_scan_info array_wifi[]){
+void choose_net(struct ap_scan_info array_wifi[], int error){
 	
-	if(errcontrol == 0){
+	if(error == 0){
 			printf("No hay información cargada, elija la opción 1.\n");
 	}
 	else{
@@ -130,22 +130,22 @@ void choose_net(struct ap_scan_info array_wifi[]){
 			
 /*Función switch para elegir opción del menú*/
 			
-      switch (option) {
-	case 1:
-	  array_load(arrwf);
-	  break;
+    switch (option, errcontrol) {
+			case 1:
+			array_load(arrwf, errcontrol);
+			break;
 		      
-	case 2:
-	  show_info(arrwf);
-	  break;
+			case 2:
+	  	show_info(arrwf, errcontrol);
+	  	break;
 		      
-	case 3:
-    choose_net(arrwf);
-	  break;
+			case 3:
+    	choose_net(arrwf, errcontrol);
+	  	break;
 		      
-	case 4:
-	  printf("\nFinalizando sesión...\n¡Hasta pronto!\n");
-	  exit(0);
+			case 4:
+	  	printf("\nFinalizando sesión...\n¡Hasta pronto!\n");
+	  	exit(0);
       }
     }
     return 0;
