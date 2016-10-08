@@ -71,29 +71,34 @@ void array_load(struct ap_scan_info array_wifi[]){
   /*-----Lee cada posición del array y la saca por pantalla-----*/
 
   void show_info(struct ap_scan_info array_wifi[]){
-    int i = 0;
-		int j = 0;
-    printf("%-8s%-20s%-20s%-8s%-8s%-13s%s\n","No.Red","SSID","MAC","Modo","Canal","Encriptada","Calidad");
-	  printf("------------------------------------------------------------------------------------------------\n");
-    while (i<ARRAY_SIZE) {
-      printf("%-8d", i);
-      printf("%-20s",array_wifi[i].essid);
-	    printf("%-x:",array_wifi[i].mac[0]);
-				for(j = 1; j<(MAC_SIZE-1); j++){
-					printf("%-x:", array_wifi[i].mac[j]);
-				}
-			printf("%-5x", array_wifi[i].mac[MAC_SIZE]);
-	    printf("%-8d",array_wifi[i].mode);
-			printf("%-8d",array_wifi[i].channel);
-			printf("%-13d",array_wifi[i].encrypted);
-			printf("%u\n", array_wifi[i].quality[0]);
-	    i++;
-    }
+		if( strcmp(array_wifi[0].essid, NULL) == 0 ){
+			printf("No hay información cargada, elija la opción 1.\n");
+		}
+		else{
+			int i = 0;
+			int j = 0;
+			printf("%-8s%-20s%-20s%-8s%-8s%-13s%s\n","No.Red","SSID","MAC","Modo","Canal","Encriptada","Calidad");
+			printf("------------------------------------------------------------------------------------------------\n");
+			while (i<ARRAY_SIZE) {
+				printf("%-8d", i);
+				printf("%-20s",array_wifi[i].essid);
+				printf("%-x:",array_wifi[i].mac[0]);
+					for(j = 1; j<(MAC_SIZE-1); j++){
+						printf("%-x:", array_wifi[i].mac[j]);
+					}
+				printf("%-5x", array_wifi[i].mac[MAC_SIZE]);
+				printf("%-8d",array_wifi[i].mode);
+				printf("%-8d",array_wifi[i].channel);
+				printf("%-13d",array_wifi[i].encrypted);
+				printf("%u\n", array_wifi[i].quality[0]);
+				i++;
+			}
+		}
   }
 
 void choose_net(struct ap_scan_info array_wifi[]){
 	
-	if(array_wifi == NULL){
+	if( strcmp(array_wifi[0].essid, NULL) == 0 ){
 			printf("No hay información cargada, elija la opción 1.\n");
 	}
 	else{
@@ -114,8 +119,10 @@ void choose_net(struct ap_scan_info array_wifi[]){
 /*---------Main----------*/
 
   int main(int argc, char const *argv[]) {
-
-    struct ap_scan_info arrwf[ARRAY_SIZE];
+		struct ap_scan_info arrwf[];
+			memset(arrwf[0].essid, NULL, 15*sizeof(essid));
+		}
+    
     
     while(1){
 
