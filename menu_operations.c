@@ -25,7 +25,7 @@
 /*                      Definición de las funciones                          */
 /*---------------------------------------------------------------------------*/
 
-void array_load(struct ap_scan_info array_wifi[], int error){
+int array_load(struct ap_scan_info array_wifi[], int error){
 	
 	error = 1;
   int i;
@@ -54,6 +54,7 @@ void array_load(struct ap_scan_info array_wifi[], int error){
 	}
 	
 	printf("Información cargada correctamente.\n");
+	return error;
 	
 }
 
@@ -121,7 +122,7 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
 
   int main(int argc, char const *argv[]) {
 		struct ap_scan_info arrwf[ARRAY_SIZE];
-		int errcontrol= 0;
+		int errcontrol = 0;
     
     while(1){
 
@@ -132,7 +133,7 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
 			
     switch(option){
 			case 1:
-			array_load(arrwf, errcontrol);
+			errcontrol = array_load(arrwf, errcontrol);
 			break;
 		      
 			case 2:
