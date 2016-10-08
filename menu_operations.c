@@ -80,7 +80,7 @@ int array_load(struct ap_scan_info array_wifi[], int error){
 			int i = 0;
 			int j = 0;
 			printf("%-8s%-20s%-20s%-8s%-8s%-13s%s\n","No.Red","SSID","MAC","Modo","Canal","Encriptada","Calidad");
-			printf("----------------------------------------------------------------------------------------\n");
+			printf("-------------------------------------------------------------------------------------\n");
 			while (i<ARRAY_SIZE) {
 				printf("%-8d", i);
 				printf("%-20s",array_wifi[i].essid);
@@ -95,7 +95,7 @@ int array_load(struct ap_scan_info array_wifi[], int error){
 				printf("%u\n", array_wifi[i].quality[0]);
 				i++;
 			}
-			printf("----------------------------------------------------------------------------------------\n");
+			printf("-------------------------------------------------------------------------------------\n");
 		}
   }
 
