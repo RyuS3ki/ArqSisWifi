@@ -44,8 +44,8 @@ int array_load(struct ap_scan_info array_wifi[], int error){
 	
 	for(i=0; i<ARRAY_SIZE; i++){
 		
-		strncpy(array_wifi[i].mac, wifi[i].mac, 6);
-		strncpy(array_wifi[i].essid, wifi[i].essid, 15);
+		memcpy(array_wifi[i].mac, wifi[i].mac, 6);
+		memcpy(array_wifi[i].essid, wifi[i].essid, 15);
 		array_wifi[i].mode = wifi[i].mode;
 		array_wifi[i].channel = wifi[i].channel;
 		array_wifi[i].encrypted = wifi[i].encrypted;
