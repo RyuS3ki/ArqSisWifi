@@ -121,7 +121,7 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
 
   int main(int argc, char const *argv[]) {
 		struct ap_scan_info arrwf[ARRAY_SIZE];
-		global int errcontrol= 0;
+		int errcontrol= 0;
     
     while(1){
 
