@@ -105,7 +105,7 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
 	if(error == 0){
 			printf("No hay información cargada, elija la opción 1.\n");
 	}
-	else if(0>id>6){
+	else if(id<0 || id>6){
 		printf("%d no es un ID válido de la Base de Datos", id);
 	}
 	else{
