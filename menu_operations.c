@@ -71,7 +71,7 @@ void array_load(struct ap_scan_info array_wifi[]){
   /*-----Lee cada posición del array y la saca por pantalla-----*/
 
   void show_info(struct ap_scan_info array_wifi[]){
-		if( strcmp(array_wifi[0].essid, NULL) == 0 ){
+		if( strcmp(array_wifi[0].essid, aux_null.essid) == 0 ){
 			printf("No hay información cargada, elija la opción 1.\n");
 		}
 		else{
@@ -98,7 +98,7 @@ void array_load(struct ap_scan_info array_wifi[]){
 
 void choose_net(struct ap_scan_info array_wifi[]){
 	
-	if( strcmp(array_wifi[0].essid, NULL) == 0 ){
+	if( strcmp(array_wifi[0].essid, aux_null.essid) == 0 ){
 			printf("No hay información cargada, elija la opción 1.\n");
 	}
 	else{
@@ -119,10 +119,10 @@ void choose_net(struct ap_scan_info array_wifi[]){
 /*---------Main----------*/
 
   int main(int argc, char const *argv[]) {
-		struct ap_scan_info arrwf[];
-			memset(arrwf[0].essid, NULL, 15*sizeof(essid));
-		}
-    
+		struct ap_scan_info arrwf[ARRAY_SIZE];
+		memset(arrwf[0].essid, NULL, 15*sizeof(essid));
+		struct ap_scan_info aux_null;
+    memset(aux_null[0].essid, NULL, 15*sizeof(essid));
     
     while(1){
 
