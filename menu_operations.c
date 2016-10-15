@@ -152,6 +152,10 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
 			case 4:
 	  	printf("\nFinalizando sesión...\n¡Hasta pronto!\n");
 	  	exit(0);
+				
+			default:
+			printf("Introduzca una opción válida\n");
+			break;
       }
     }
     return 0;
