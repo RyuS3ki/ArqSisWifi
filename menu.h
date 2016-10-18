@@ -27,7 +27,7 @@ struct ap_scan_info
 };
 
 /*Funciones externas*/
-long int data_read();
+int data_read(char *teclado);
 
 /*Prototipos de funciones*/
 void menu();
