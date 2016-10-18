@@ -4,7 +4,6 @@ int data_read(char *teclado){
 
   ssize_t bytes_teclado;
   size_t num_bytes;
-  char *teclado;
 
   num_bytes = 0;
   teclado = NULL;
