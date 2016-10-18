@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int data_read(void){
+int data_read(char *teclado){
 
   ssize_t bytes_teclado;
   size_t num_bytes;
