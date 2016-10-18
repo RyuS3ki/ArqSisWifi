@@ -27,7 +27,7 @@ struct ap_scan_info
 };
 
 /*Funciones externas*/
-extern long int data_read();
+long int data_read();
 
 /*Prototipos de funciones*/
 void menu();
