@@ -104,7 +104,8 @@ int array_load(struct ap_scan_info array_wifi[], int error){
 
 void choose_net(struct ap_scan_info array_wifi[], int error){
 	printf("Introduzca un número de ID: ");
-	int id = data_read();
+	char *teclado = 0;
+	int id = data_read(&teclado);
 	if(error == 0){
 			printf("No hay información cargada, elija la opción 1.\n");
 	}
@@ -122,6 +123,7 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
 		printf("Modo: %d\nCanal: %d\nEncriptada: %d\n", array_wifi[id].mode, array_wifi[id].channel, array_wifi[id].encrypted);
 		printf("Calidad: %u/%u\n\n", array_wifi[id].quality[0], array_wifi[id].quality[1]);
 	}
+	free(teclado);
 }
 
 /*---------Main----------*/
@@ -133,7 +135,7 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
     while(1){
 
       menu();
-      long int option = data_read();
+      long int option = data_read(&teclado);
 			
 /*Función switch para elegir opción del menú*/
 			
@@ -158,6 +160,7 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
 			printf("Introduzca una opción válida\n");
 			break;
       }
+			free(teclado);
     }
     return 0;
 }
