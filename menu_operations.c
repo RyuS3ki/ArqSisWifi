@@ -56,7 +56,6 @@ int array_load(struct ap_scan_info array_wifi[], int error){
 	
 	printf("Información cargada correctamente.\n");
 	return error;
-	
 }
 
 /*Menu a mostrar al usuario*/
@@ -104,7 +103,7 @@ int array_load(struct ap_scan_info array_wifi[], int error){
 
 void choose_net(struct ap_scan_info array_wifi[], int error){
 	printf("Introduzca un número de ID: ");
-	char *teclado = 0;
+	char *teclado = NULL;
 	int id = data_read(&teclado);
 	if(error == 0){
 			printf("No hay información cargada, elija la opción 1.\n");
@@ -134,8 +133,9 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
     
     while(1){
 
+			char *teclado;
       menu();
-      long int option = data_read(&teclado);
+      int option = data_read(&teclado);
 			
 /*Función switch para elegir opción del menú*/
 			
