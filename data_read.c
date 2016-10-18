@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <unistd.h>
 
 int data_read(char *teclado){
 
