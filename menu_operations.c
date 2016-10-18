@@ -143,6 +143,10 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
       int bytes = data_read(teclado);
 			int option = atoi(teclado);
 			
+			if(){
+				printf("Error de lectura\n");
+			}
+			
 /*Función switch para elegir opción del menú*/
 			
     switch(option){
