@@ -104,9 +104,13 @@ int array_load(struct ap_scan_info array_wifi[], int error){
 void choose_net(struct ap_scan_info array_wifi[], int error){
 	printf("Introduzca un número de ID: ");
 	char *teclado = NULL;
-	int id = data_read(teclado);
+	int bytes = data_read(teclado);
+	int id = atoi(teclado);
 	if(error == 0){
 			printf("No hay información cargada, elija la opción 1.\n");
+	}
+	else if(bytes < 0){
+		printf("Error de lectura\n");
 	}
 	else if(id<0 || id>5){
 		printf("%d no es un ID válido de la Base de Datos\n", id);
@@ -136,7 +140,8 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
 			char *teclado;
 			teclado = NULL;
       menu();
-      int option = data_read(teclado);
+      int bytes = data_read(teclado);
+			int option = atoi(teclado);
 			
 /*Función switch para elegir opción del menú*/
 			
