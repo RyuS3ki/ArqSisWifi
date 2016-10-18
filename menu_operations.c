@@ -134,6 +134,7 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
     while(1){
 
 			char *teclado;
+			teclado = NULL;
       menu();
       int option = data_read(teclado);
 			
