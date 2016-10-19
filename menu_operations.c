@@ -180,8 +180,8 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
 					printf("\nFinalizando sesión...\n¡Hasta pronto!\n");
 					exit(0);
 				}
-				//free(kb);
 			}
 		}
+		free(kb);
     return 0;
 }
