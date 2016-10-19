@@ -140,12 +140,14 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
 			char kb[MAX_INPUT];
       menu();
       int bytes = data_read(kb);
-			int option = atoi(kb);
+			//int option = atoi(kb);
 			
 			if(bytes < 1){
 				printf("Error de lectura\n");
 			}
-			
+			else if(option<1 || option>4){
+				printf("Introduzca una opción válida\n");
+			}
 			else{
 /*Función switch para elegir opción del menú*/
 				switch(option){
@@ -164,10 +166,6 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
 					case 4:
 					printf("\nFinalizando sesión...\n¡Hasta pronto!\n");
 					exit(0);
-
-					default:
-					printf("Introduzca una opción válida\n");
-					break;
 				}
 				//free(kb);
 			}
