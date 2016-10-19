@@ -106,7 +106,7 @@ int array_load(struct ap_scan_info array_wifi[], int error){
 
 void choose_net(struct ap_scan_info array_wifi[], int error){
 	printf("Introduzca un número de ID: ");
-	int id = scanf("%d", id);
+	int id = scanf("%d", &id);
 	if(error == 0){
 			printf("No hay información cargada, elija la opción 1.\n");
 	}
@@ -168,7 +168,7 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
 					printf("Introduzca una opción válida\n");
 					break;
 				}
-				free(kb);
+				//free(kb);
 			}
 		}
     return 0;
