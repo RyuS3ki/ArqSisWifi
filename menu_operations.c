@@ -3,7 +3,7 @@
   Fichero     array_operations.c
 
   Resumen     Archivo .c que inicializa el array con los datos de las redes wifi
-	      			Adicionalmente incluirá las funciones diseñadas por los estudiantes
+	      Adicionalmente incluirá las funciones diseñadas por los estudiantes
               para completar la funcionalidad del programa.
 
 -------------------------------------------------------------------------------*/
@@ -12,7 +12,6 @@
 #include <string.h>
 #include <unistd.h>
 #include "menu.h"
-//#include "data_read.h"
 
 /*---------------------------------------------------------------------------*/
 /*                      Definición de las variables                          */
@@ -150,15 +149,15 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
     
     while(1){
 
-			char kb = NULL;
-      menu();
-      int bytes = data_read(&kb);
+		char kb = NULL;
+      	menu();
+      	int bytes = data_read(&kb);
 			printf("Char3: %s\n", kb);
 			
 			if(bytes < 1){
 				printf("Error de lectura\n");
 			}
-			else if(option<1 || option>4){
+			else if(kb<1 || kb>4){
 				printf("Introduzca una opción válida\n");
 			}
 			else{
