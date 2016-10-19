@@ -3,7 +3,7 @@
   Fichero     array_operations.c
 
   Resumen     Archivo .c que inicializa el array con los datos de las redes wifi
-	      Adicionalmente incluirá las funciones diseñadas por los estudiantes
+	      			Adicionalmente incluirá las funciones diseñadas por los estudiantes
               para completar la funcionalidad del programa.
 
 -------------------------------------------------------------------------------*/
@@ -21,6 +21,7 @@
 #define MAC_SIZE 6
 #define ESSID_SIZE 15
 #define QUAL_SIZE 2
+#define MAX_INPUT 15
 
 /*---------------------------------------------------------------------------*/
 /*                      Definición de las funciones                          */
@@ -103,9 +104,7 @@ int array_load(struct ap_scan_info array_wifi[], int error){
 
 void choose_net(struct ap_scan_info array_wifi[], int error){
 	printf("Introduzca un número de ID: ");
-	char *teclado = NULL;
-	int bytes = data_read(&teclado);
-	int id = atoi(&teclado);
+
 	if(error == 0){
 			printf("No hay información cargada, elija la opción 1.\n");
 	}
@@ -126,7 +125,6 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
 		printf("Modo: %d\nCanal: %d\nEncriptada: %d\n", array_wifi[id].mode, array_wifi[id].channel, array_wifi[id].encrypted);
 		printf("Calidad: %u/%u\n\n", array_wifi[id].quality[0], array_wifi[id].quality[1]);
 	}
-	free(teclado);
 }
 
 /*---------Main----------*/
@@ -137,40 +135,39 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
     
     while(1){
 
-			char *teclado;
-			teclado = NULL;
+			char kb[MAX_INPUT];
       menu();
-      int bytes = data_read(&teclado);
-			int option = atoi(teclado);
+      int bytes = data_read(kb);
 			
-			if(){
+			if(bytes < 1){
 				printf("Error de lectura\n");
 			}
 			
+			else{
 /*Función switch para elegir opción del menú*/
-			
-    switch(option){
-			case 1:
-			errcontrol = array_load(arrwf, errcontrol);
-			break;
-		      
-			case 2:
-	  	show_info(arrwf, errcontrol);
-	  	break;
-		      
-			case 3:
-    	choose_net(arrwf, errcontrol);
-	  	break;
-		      
-			case 4:
-	  	printf("\nFinalizando sesión...\n¡Hasta pronto!\n");
-	  	exit(0);
-				
-			default:
-			printf("Introduzca una opción válida\n");
-			break;
-      }
-			free(teclado);
-    }
+				switch(*kb){
+					case 1:
+					errcontrol = array_load(arrwf, errcontrol);
+					break;
+
+					case 2:
+					show_info(arrwf, errcontrol);
+					break;
+
+					case 3:
+					choose_net(arrwf, errcontrol);
+					break;
+
+					case 4:
+					printf("\nFinalizando sesión...\n¡Hasta pronto!\n");
+					exit(0);
+
+					default:
+					printf("Introduzca una opción válida\n");
+					break;
+				}
+				free(kb);
+			}
+		}
     return 0;
 }
