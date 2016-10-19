@@ -10,8 +10,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "menu.h"
-#include "data_read.h"
+//#include "data_read.h"
 
 /*---------------------------------------------------------------------------*/
 /*                      Definición de las variables                          */
@@ -26,6 +27,18 @@
 /*---------------------------------------------------------------------------*/
 /*                      Definición de las funciones                          */
 /*---------------------------------------------------------------------------*/
+
+int data_read(char *teclado){
+
+  ssize_t bytes_teclado;
+  size_t num_bytes;
+
+  num_bytes = 0;
+  teclado = NULL;
+  bytes_teclado = getline(&teclado, &num_bytes, stdin);
+
+  return bytes_teclado;
+}
 
 int array_load(struct ap_scan_info array_wifi[], int error){
 	
@@ -144,6 +157,8 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
 	    printf("Option: %d\n", option);
 			int option1 = kb;
 			printf("Option1: %d\n", option1);
+			int option2 = &kb;
+			printf("Option2: %d\n", option2);
 			
 			if(bytes < 1){
 				printf("Error de lectura\n");
