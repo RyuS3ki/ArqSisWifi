@@ -140,7 +140,7 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
 			char kb[MAX_INPUT];
       menu();
       int bytes = data_read(kb);
-			int option = atoi(*kb);
+			int option = atoi(kb);
 			
 			if(bytes < 1){
 				printf("Error de lectura\n");
