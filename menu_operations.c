@@ -169,7 +169,7 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
 					printf("Introduzca una opción válida\n");
 					break;
 				}
-				free(kb);
+				//free(kb);
 			}
 		}
     return 0;
