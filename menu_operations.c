@@ -149,12 +149,13 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
 /*---------Main----------*/
 
   int main(int argc, char const *argv[]) {
+		
 		struct ap_scan_info arrwf[ARRAY_SIZE];
 		int errcontrol = 0;
+		char *kb = NULL;
     
     while(1){
 
-			char kb = NULL;
       menu();
       int bytes = data_read(&kb);
 			printf("Char3: %s\n", kb);
