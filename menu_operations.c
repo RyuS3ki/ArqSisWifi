@@ -31,11 +31,16 @@ int data_read(char *teclado){
 
   ssize_t bytes_teclado;
   size_t num_bytes;
+	int flush;
 
   num_bytes = 0;
   teclado = NULL;
   bytes_teclado = getline(&teclado, &num_bytes, stdin);
-
+	flush = fflush(&teclado);
+	if(flush != 0){
+		printf("Error\n");
+	}
+	
   return bytes_teclado;
 }
 
@@ -149,9 +154,9 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
     
     while(1){
 
-		char kb = NULL;
-      	menu();
-      	int bytes = data_read(&kb);
+			char kb = NULL;
+      menu();
+      int bytes = data_read(&kb);
 			printf("Char3: %s\n", kb);
 			
 			if(bytes < 1){
