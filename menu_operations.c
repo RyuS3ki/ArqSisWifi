@@ -36,7 +36,7 @@ int data_read(char *teclado){
   num_bytes = 0;
   teclado = NULL;
   bytes_teclado = getline(&teclado, &num_bytes, stdin);
-	flush = fflush(&teclado);
+	flush = fflush(teclado);
 	if(flush != 0){
 		printf("Error\n");
 	}
