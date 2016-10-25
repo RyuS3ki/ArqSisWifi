@@ -27,7 +27,7 @@
 /*                      Definición de las funciones                          */
 /*---------------------------------------------------------------------------*/
 
-int data_read(char *teclado){
+int data_read(char teclado){
 
   ssize_t bytes_teclado;
   size_t num_bytes;
