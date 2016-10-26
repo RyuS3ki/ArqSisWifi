@@ -158,10 +158,7 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
 			char option = *kb;
 			printf("%s\n", kb);
 			
-			if(bytes < 1){
-				printf("Error de lectura\n");
-			}
-			else if(option<1 || option>4){
+			if(option<1 || option>4){
 				printf("Introduzca una opción válida\n");
 			}
 			else{
