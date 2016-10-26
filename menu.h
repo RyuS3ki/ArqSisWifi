@@ -31,6 +31,7 @@ int data_read(char *teclado);
 
 /*Prototipos de funciones*/
 void menu();
+int data_read(char *teclado);
 int array_load(struct ap_scan_info array_wifi[], int error);
 void show_info(struct ap_scan_info array_wifi[], int error);
 void choose_net(struct ap_scan_info array_wifi[], int error);
