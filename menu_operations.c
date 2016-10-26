@@ -27,23 +27,20 @@
 /*                      Definición de las funciones                          */
 /*---------------------------------------------------------------------------*/
 
-int data_read(char *teclado){
+void data_read(char *cadena){
+  ssize_t bytes_leidos;
+  size_t numero_bytes;
+  char *cadena;
+ 
+  numero_bytes = 0;
+  cadena = NULL;
+  bytes_leidos = getline(&cadena, &numero_bytes, stdin);
 
-  ssize_t bytes_teclado;
-  size_t num_bytes;
-	int flush;
-
-  num_bytes = 0;
-  teclado = NULL;
-  bytes_teclado = getline(&teclado, &num_bytes, stdin);
-	/*flush = fflush(teclado);
-	if(flush != 0){
-		printf("Error\n");
-	}*/
-	
-  return bytes_teclado;
+  if (bytes_leidos == -1)
+  {
+    puts("Error.");
+  }
 }
-
 int array_load(struct ap_scan_info array_wifi[], int error){
 	
 	error = 1;
