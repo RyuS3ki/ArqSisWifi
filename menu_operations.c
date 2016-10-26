@@ -30,7 +30,6 @@
 void data_read(char *cadena){
   ssize_t bytes_leidos;
   size_t numero_bytes;
-  char *cadena;
  
   numero_bytes = 0;
   cadena = NULL;
