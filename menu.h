@@ -26,13 +26,13 @@ struct ap_scan_info
     unsigned int quality[2];     // Two integers stating quality current/max
 };
 
-/*Funciones externas*/
-extern long int data_read();
-
 /*Prototipos de funciones*/
 void menu();
+char *data_read();
+int number_read(char *cadena);
 int array_load(struct ap_scan_info array_wifi[], int error);
 void show_info(struct ap_scan_info array_wifi[], int error);
 void choose_net(struct ap_scan_info array_wifi[], int error);
+void change_name(struct ap_scan_info array_wifi[], int error);
 
 #endif

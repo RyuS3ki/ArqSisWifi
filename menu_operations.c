@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "menu.h"
 
 /*---------------------------------------------------------------------------*/
@@ -20,10 +21,37 @@
 #define MAC_SIZE 6
 #define ESSID_SIZE 15
 #define QUAL_SIZE 2
+#define MAX_INPUT 15
 
 /*---------------------------------------------------------------------------*/
 /*                      Definición de las funciones                          */
 /*---------------------------------------------------------------------------*/
+
+char *data_read(){
+  char *cadena;
+  ssize_t bytes_leidos;
+  size_t numero_bytes;
+ 
+  numero_bytes = 0;
+  cadena = NULL;
+  bytes_leidos = getline(&cadena, &numero_bytes, stdin);
+
+  if (bytes_leidos == -1)
+  {
+    puts("Error.");
+    return NULL;
+  }
+  else{
+    return cadena;
+  }
+}
+
+int number_read(char *cadena){
+  
+  long int num = strtol(cadena, NULL, 10);
+  return num;
+  
+}
 
 int array_load(struct ap_scan_info array_wifi[], int error){
 	
@@ -55,7 +83,6 @@ int array_load(struct ap_scan_info array_wifi[], int error){
 	
 	printf("Información cargada correctamente.\n");
 	return error;
-	
 }
 
 /*Menu a mostrar al usuario*/
@@ -65,7 +92,8 @@ int array_load(struct ap_scan_info array_wifi[], int error){
     printf("[1]\tCargar información de redes wifi\n");
     printf("[2]\tMostrar las redes activas\n");
     printf("[3]\tElegir y mostrar la información de una red\n");
-    printf("[4]\tSalir\n");
+    printf("[4]\tCambiar nombre de ESSID\n");
+    printf("[5]\tSalir\n");
 		printf("Teclee una opción: ");
   }
 
@@ -101,11 +129,16 @@ int array_load(struct ap_scan_info array_wifi[], int error){
 		}
   }
 
+
+
 void choose_net(struct ap_scan_info array_wifi[], int error){
 	printf("Introduzca un número de ID: ");
-	int id = data_read();
+	int id = number_read(data_read());
 	if(error == 0){
 			printf("No hay información cargada, elija la opción 1.\n");
+	}
+	else if(id < 0){
+		printf("Error de lectura\n");
 	}
 	else if(id<0 || id>5){
 		printf("%d no es un ID válido de la Base de Datos\n", id);
@@ -123,40 +156,61 @@ void choose_net(struct ap_scan_info array_wifi[], int error){
 	}
 }
 
+void change_name(struct ap_scan_info array_wifi[], int error){
+  
+  if(error == 0){
+    printf("No hay información cargada, elija la opción 1.\n");
+  }
+  printf("Introduzca un número de ID: ");
+  int id = number_read(data_read());
+  printf("Introduzca el nuevo nombre: ");
+  char *nombre = data_read();
+  memset(array_wifi[id].essid, 0, sizeof(array_wifi[id].essid));
+  strncpy(array_wifi[id].essid, nombre, strlen(nombre)-1);
+}
+
 /*---------Main----------*/
 
   int main(int argc, char const *argv[]) {
+		
 		struct ap_scan_info arrwf[ARRAY_SIZE];
 		int errcontrol = 0;
+		char *kb = NULL;
     
     while(1){
 
       menu();
-      long int option = data_read();
+      kb = data_read();
+			long int option = number_read(kb);
 			
+			if(option<1 || option>5){
+				printf("Introduzca una opción válida\n");
+			}
+			else{
 /*Función switch para elegir opción del menú*/
-			
-    switch(option){
-			case 1:
-			errcontrol = array_load(arrwf, errcontrol);
-			break;
-		      
-			case 2:
-	  	show_info(arrwf, errcontrol);
-	  	break;
-		      
-			case 3:
-    	choose_net(arrwf, errcontrol);
-	  	break;
-		      
-			case 4:
-	  	printf("\nFinalizando sesión...\n¡Hasta pronto!\n");
-	  	exit(0);
-				
-			default:
-			printf("Introduzca una opción válida\n");
-			break;
-      }
-    }
+				switch(option){
+					case 1:
+					errcontrol = array_load(arrwf, errcontrol);
+					break;
+
+					case 2:
+					show_info(arrwf, errcontrol);
+					break;
+
+					case 3:
+					choose_net(arrwf, errcontrol);
+					break;
+
+					case 4:
+					change_name(arrwf, errcontrol);
+					break;
+					  
+					case 5:
+					printf("\nFinalizando sesión...\n¡Hasta pronto!\n");
+					exit(0);
+				}
+			}
+		}
+		free(kb);
     return 0;
 }
