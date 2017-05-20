@@ -1,7 +1,7 @@
 /*---------------------------------LICENSE------------------------------------
 
-		Wi-fi DB emulator programmed in C. Developed for Systems Architecture 
-		course, Telematics Engineering Degree, Universidad Carlos III de Madrid.
+    Wi-fi DB emulator programmed in C. Developed for Systems Architecture 
+    course, Telematics Engineering Degree, Universidad Carlos III de Madrid.
 		
     Copyright (C) 2016  Rebeca Jimenez Guillen, rebecajg@protonmail.com
 
