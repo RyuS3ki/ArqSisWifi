@@ -3,7 +3,7 @@
     Wi-fi DB emulator programmed in C. Developed for Systems Architecture 
     course, Telematics Engineering Degree, Universidad Carlos III de Madrid.
 		
-    Copyright (C) 2016  Rebeca Jimenez Guillen, rebecajg@protonmail.com
+    Copyright (C) 2016  Rebeca Jimenez Guillen (RyuS3ki), rebecajg@protonmail.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
